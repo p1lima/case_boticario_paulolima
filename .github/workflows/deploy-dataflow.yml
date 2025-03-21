@@ -1,5 +1,8 @@
 name: Deploy Dataflow Pipeline
 
+env:
+  PROJECT_ID: t-sunlight-454318-h7
+
 on:
   push:
     branches:
