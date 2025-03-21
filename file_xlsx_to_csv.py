@@ -23,11 +23,11 @@ def xlsx_to_csv(bucket_name):
     #blob = bucket.blob(file_name)
     
     for blob in blobs :
-        blob_name = bucket.blob(blob.name)
-        target_path = f"gs://case_boticario_paulolima/{blob.name}"
+        #blob_name = bucket.blob(blob.name)
+        target_path = f"gs://case_boticario_paulolima/csv/{blob.name}"
 
         # Download the XLSX file as bytes
-        blob_result = blob.download_as_bytes()
+        #blob_result = blob.download_as_bytes()
         
         # Convert the XLSX file to a Pandas DataFrame
         df = pd.read_excel(target_path)
@@ -36,7 +36,8 @@ def xlsx_to_csv(bucket_name):
         csv_data = df.to_csv(index=False)
         
         # Create a new blob for the CSV file
-        csv_blob = bucket.blob(blob_name.name.replace('.xlsx', '.csv'))
+        csv_blob = bucket.blob(blob.name.replace('.xlsx', '.csv'))
+        csv_blob.bucket = "case_boticario_paulolima/csv/"
         
         # Upload the CSV data to Cloud Storage
         csv_blob.upload_from_string(csv_data, content_type='text/csv')
