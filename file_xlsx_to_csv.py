@@ -1,4 +1,4 @@
-import pandas as pd
+#import pandas as pd
 from google.cloud import storage
 from io import BytesIO
 
@@ -6,7 +6,7 @@ def xlsx_to_csv(event, context):
     """
     Triggered by a Cloud Storage event.
     Converts an XLSX file to CSV and uploads it to a new location.
-    
+
     """
     bucket_name = event['bucket']
     file_name = event['name']
