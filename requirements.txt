@@ -8,4 +8,4 @@ google-cloud-vision>=0.38.0
 mock>=2.0.0
 numpy>=1.14.2
 six==1.12.0
-pandas
+pandas>=2.1.4
