@@ -24,13 +24,13 @@ def xlsx_to_csv(bucket_name):
     
     for blob in blobs :
         blob_name = bucket.blob(blob.name)
-        target_path = f"gs://{bucket_name}/{blob_name}"
+        target_path = f"gs://{blob.bucket}/{blob.name}"
 
         # Download the XLSX file as bytes
         blob_result = blob.download_as_bytes()
         
         # Convert the XLSX file to a Pandas DataFrame
-        df = pd.read_excel(blob.name)
+        df = pd.read_excel(target_path)
         
         # Convert the DataFrame to a CSV string
         csv_data = df.to_csv(index=False)
