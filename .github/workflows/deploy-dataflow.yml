@@ -29,4 +29,5 @@ jobs:
 
       - name: Executar Dataflow
         run: |
+          source venv/bin/activate
           python file_xlsx_to_csv.py
