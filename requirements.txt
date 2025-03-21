@@ -9,3 +9,4 @@ mock>=2.0.0
 numpy>=1.14.2
 six>=1.12.0
 pandas
+openpyxl
