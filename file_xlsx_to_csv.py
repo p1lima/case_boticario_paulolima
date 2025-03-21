@@ -25,7 +25,7 @@ def xlsx_to_csv(bucket_name):
     for blob in blobs:
         blob_name = bucket.blob(blob.name)
         print(blob_name)
-        target_path = f"gs://{bucket_name}/{blob_name.replace('.xlsx', '.csv')}"
+        target_path = f"gs://{bucket_name}/{blob_name}"
         print(target_path)
 
         # Download the XLSX file as bytes
