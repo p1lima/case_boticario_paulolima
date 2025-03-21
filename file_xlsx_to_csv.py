@@ -30,7 +30,7 @@ def xlsx_to_csv(bucket_name):
         blob_result = blob.download_as_bytes()
         
         # Convert the XLSX file to a Pandas DataFrame
-        df = pd.read_excel(BytesIO(blob.name))
+        df = pd.read_excel(blob.name)
         
         # Convert the DataFrame to a CSV string
         csv_data = df.to_csv(index=False)
