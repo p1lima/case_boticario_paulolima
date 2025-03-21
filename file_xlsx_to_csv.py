@@ -36,3 +36,5 @@ def xlsx_to_csv(event, context):
     csv_blob.upload_from_string(csv_data, content_type='text/csv')
     
     print(f"XLSX file converted and uploaded to: {target_path}")
+
+xlsx_to_csv()
