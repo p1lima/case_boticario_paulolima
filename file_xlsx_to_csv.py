@@ -22,7 +22,7 @@ def xlsx_to_csv(bucket_name):
     print(blobs)
     #blob = bucket.blob(file_name)
     
-    for blob in blobs:
+    for blob in blobs :
         blob_name = bucket.blob(blob.name)
         target_path = f"gs://{bucket_name}/{blob_name}"
 
@@ -38,7 +38,7 @@ def xlsx_to_csv(bucket_name):
         # Create a new blob for the CSV file
         csv_blob = bucket.blob(blob_name.name.replace('.xlsx', '.csv'))
         
-        # Upload the CSV data to Cloud Storage 
+        # Upload the CSV data to Cloud Storage
         csv_blob.upload_from_string(csv_data, content_type='text/csv')
         
         print(f"XLSX file converted and uploaded to: {target_path}")
