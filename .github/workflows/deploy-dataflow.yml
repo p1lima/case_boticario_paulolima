@@ -26,4 +26,4 @@ jobs:
 
       - name: Executar Dataflow
         run: |
-          python pipeline.py
+          python file_xlsx_to_csv.py
