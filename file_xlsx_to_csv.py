@@ -38,7 +38,7 @@ def xlsx_to_csv(bucket_name):
         csv_data = df.to_csv(index=False)
         
         # Create a new blob for the CSV file
-        csv_blob = bucket.blob(blob_name.replace('.xlsx', '.csv'))
+        csv_blob = bucket.blob(blob_name.name.replace('.xlsx', '.csv'))
         
         # Upload the CSV data to Cloud Storage 
         csv_blob.upload_from_string(csv_data, content_type='text/csv')
