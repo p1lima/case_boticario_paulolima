@@ -8,7 +8,7 @@ import pandas_gbq
 import os
 os.environ["GCLOUD_PROJECT"] = "t-sunlight-454318-h7"
 
-# Initialize the Cloud clients 
+# Initialize the Cloud clients
 credentials, project = google.auth.default()
 storage_client = storage.Client(credentials=credentials)
 bigquery_client = bigquery.Client(credentials=credentials,location="southamerica-east1")
