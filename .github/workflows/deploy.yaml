@@ -24,7 +24,9 @@ jobs:
 
       - name: Construir e enviar a imagem Docker
         run: |
-          gcloud builds submit --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima
+          gcloud builds submit \
+            --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima \
+            --logging=cloud-logging-only
 
       - name: Deploy no Cloud Run
         run: |
