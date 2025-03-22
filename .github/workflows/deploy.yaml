@@ -31,3 +31,18 @@ jobs:
 
       - name: Push da imagem para Artifact Registry
         run: docker push southamerica-east1-docker.pkg.dev/t-sunlight-454318-h7/etl-jobs/run-case-boticario-paulolima
+
+      - name: Atualizar Cloud Run Job
+        run: |
+          gcloud beta run jobs update run-case-boticario-paulolima \
+            --image southamerica-east1-docker.pkg.dev/t-sunlight-454318-h7/etl-jobs/run-case-boticario-paulolima \
+            --region southamerica-east1
+
+      - name: Atualizar Scheduler
+        run: |
+          gcloud scheduler jobs create http job-boticario-agendado \
+            --schedule="55 16 * * *" \
+            --http-method=POST \
+            --uri="https://southamerica-east1-run.googleapis.com/apis/run.googleapis.com/v1/namespaces/t-sunlight-454318-h7/jobs/run-case-boticario-paulolima:run" \
+            --oauth-service-account-email="df-st-bq-adm@t-sunlight-454318-h7.iam.gserviceaccount.com" \
+            --location=southamerica-east1
