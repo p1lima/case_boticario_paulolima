@@ -1,33 +1,34 @@
-name: Deploy Dataflow Pipeline
+# name: Deploy Dataflow Pipeline
 
-env:
-  PROJECT_ID: t-sunlight-454318-h7
+# env:
+#   PROJECT_ID: t-sunlight-454318-h7
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout código
+#         uses: actions/checkout@v3
 
-      - name: Autenticar no GCP
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+#       - name: Autenticar no GCP
+#         uses: google-github-actions/auth@v1
+#         with:
+#           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Instalar dependências
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
+#       - name: Instalar dependências
+#         run: |
+#           python -m venv venv
+#           source venv/bin/activate
+#           pip install -r requirements.txt
 
-      - name: Executar Dataflow
-        run: |
-          source venv/bin/activate
-          python read_files_save_BQ.py
+#       - name: Executar Dataflow
+#         run: |
+#           source venv/bin/activate
+#           python read_files_save_BQ.py
