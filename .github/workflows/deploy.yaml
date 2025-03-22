@@ -41,7 +41,7 @@ jobs:
       - name: Atualizar Scheduler
         run: |
           gcloud scheduler jobs update http job-boticario-agendado \
-            --schedule="55 16 * * *" \
+            --schedule="01 17 22 3 *" \
             --time-zone="America/Sao_Paulo" \
             --http-method=POST \
             --uri="https://southamerica-east1-run.googleapis.com/apis/run.googleapis.com/v1/namespaces/t-sunlight-454318-h7/jobs/run-case-boticario-paulolima:run" \
