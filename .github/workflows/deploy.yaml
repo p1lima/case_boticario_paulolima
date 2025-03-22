@@ -1,13 +1,13 @@
-name: Deploy no Cloud Run
+name: Deploy imagem do Job no Container Registry
 
 on:
   push:
     branches:
-      - main  # Deploy automático ao fazer push na branch main
-  workflow_dispatch:  # Permite rodar manualmente
+      - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,20 +19,11 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Configurar Google Cloud SDK
+      - name: Configurar SDK do GCP
         run: gcloud config set project t-sunlight-454318-h7
 
-      - name: Construir e enviar a imagem Docker
-        run: |
-          export CLOUDSDK_CORE_LOGGING_ONLY=true
-          gcloud builds submit \
-            --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima \
-            --gcs-log-dir=gs://logs-boticario-paulolima/logs/
+      - name: Build da imagem Docker
+        run: docker build -t gcr.io/t-sunlight-454318-h7/run-etl-job .
 
-      - name: Deploy no Cloud Run
-        run: |
-          gcloud run deploy run-case-boticario-paulolima \
-            --image gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima \
-            --platform managed \
-            --region southamerica-east1 \
-            --allow-unauthenticated
+      - name: Push da imagem para Container Registry
+        run: docker push gcr.io/t-sunlight-454318-h7/run-etl-job
