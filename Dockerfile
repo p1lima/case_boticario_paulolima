@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "seu_script.py"]
+CMD ["python", "read_files_save_BQ.py"]
