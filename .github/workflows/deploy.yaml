@@ -26,7 +26,8 @@ jobs:
         run: |
           export CLOUDSDK_CORE_LOGGING_ONLY=true
           gcloud builds submit \
-            --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima
+            --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima \
+            --gcs-log-dir=gs://logs-boticario-paulolima/logs/
 
       - name: Deploy no Cloud Run
         run: |
