@@ -11,10 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Atualizar Google Cloud SDK
-        run: |
-          sudo apt-get install --only-upgrade google-cloud-sdk
-          
       - name: Checkout do código
         uses: actions/checkout@v3
 
@@ -28,9 +24,9 @@ jobs:
 
       - name: Construir e enviar a imagem Docker
         run: |
+          export CLOUDSDK_CORE_LOGGING_ONLY=true
           gcloud builds submit \
-            --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima \
-            --logging=cloud-logging-only
+            --tag gcr.io/t-sunlight-454318-h7/run-case-boticario-paulolima
 
       - name: Deploy no Cloud Run
         run: |
