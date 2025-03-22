@@ -1,7 +1,3 @@
-import pandas as pd
-from google.cloud import storage
-from io import BytesIO
-
 def xlsx_to_csv(bucket_name):
     """
     Triggered by a Cloud Storage event.
@@ -16,7 +12,7 @@ def xlsx_to_csv(bucket_name):
     #target_path = f"gs://case_boticario_paulolima/{file_name.replace('.xlsx', '.csv')}"
     
     # Initialize the Cloud Storage client
-    storage_client = storage.Client()
+    #storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blobs = storage_client.list_blobs(bucket_name)
     print(blobs)
@@ -43,5 +39,3 @@ def xlsx_to_csv(bucket_name):
         csv_blob.upload_from_string(csv_data, content_type='text/csv')
         
         print(f"XLSX file converted and uploaded to: {target_path}")
-
-xlsx_to_csv("case_boticario_paulolima")
