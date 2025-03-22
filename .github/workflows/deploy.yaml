@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Atualizar Google Cloud SDK
+        run: |
+          sudo apt-get install --only-upgrade google-cloud-sdk
+          
       - name: Checkout do código
         uses: actions/checkout@v3
 
