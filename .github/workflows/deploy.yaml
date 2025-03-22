@@ -22,8 +22,12 @@ jobs:
       - name: Configurar SDK do GCP
         run: gcloud config set project t-sunlight-454318-h7
 
-      - name: Build da imagem Docker
-        run: docker build -t gcr.io/t-sunlight-454318-h7/run-etl-job .
+      - name: Configurar Docker para autenticar no Artifact Registry
+        run: |
+          gcloud auth configure-docker southamerica-east1-docker.pkg.dev
 
-      - name: Push da imagem para Container Registry
-        run: docker push gcr.io/t-sunlight-454318-h7/run-etl-job
+      - name: Build da imagem Docker
+        run: docker build -t southamerica-east1-docker.pkg.dev/t-sunlight-454318-h7/etl-jobs/run-case-boticario-paulolima .
+
+      - name: Push da imagem para Artifact Registry
+        run: docker push southamerica-east1-docker.pkg.dev/t-sunlight-454318-h7/etl-jobs/run-case-boticario-paulolima
