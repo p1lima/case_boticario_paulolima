@@ -7,7 +7,7 @@ import os
 
 def main():
 
-    # For local VS Code run
+    # For local VS Code run 
     os.environ["GCLOUD_PROJECT"] = "t-sunlight-454318-h7"
 
     # Initialize the Cloud clients
